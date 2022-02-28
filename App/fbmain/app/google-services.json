@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "886285829414",
+    "firebase_url": "https://fbmain-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "project_id": "fbmain",
+    "storage_bucket": "fbmain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886285829414:android:e4199db736a12b38f52de7",
+        "android_client_info": {
+          "package_name": "com.example.fbmain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886285829414-g0k7n4b9tu0bf2dkqbjqbc3bdbk7tjhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fbmain",
+            "certificate_hash": "222b05bf902b464a1f5a2a7cc39bd577eb7a72a6"
+          }
+        },
+        {
+          "client_id": "886285829414-i7rirt0o1osj4jjodp8ddr92ie2d8qoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifhjiYAeM3MGN-M7xw14pFRX_JFNn7xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886285829414-i7rirt0o1osj4jjodp8ddr92ie2d8qoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
