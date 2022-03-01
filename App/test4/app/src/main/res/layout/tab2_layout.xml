@@ -20,10 +20,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="177dp"
+        android:layout_height="205dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#CDFFB8"
-        android:background="@drawable/vien">
+        android:background="@drawable/vien"
+        android:backgroundTint="#CDFFB8">
 
         <TextView
             android:id="@+id/tv_clock_light1"
@@ -104,6 +104,25 @@
             android:thumbTint="@drawable/sw_thumb"
             android:trackTint="@drawable/sw_track"></Switch>
 
+        <TextView
+            android:id="@+id/threshold_light_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="170dp"
+            android:text="Ngưỡng bật đèn   30%"
+            android:textColor="@color/black"
+            android:textSize="20dp"></TextView>
+
+        <Switch
+            android:id="@+id/sw_st_threshold_light1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="170dp"
+            android:thumbTint="@drawable/sw_thumb"
+            android:trackTint="@drawable/sw_track"></Switch>
+
 
     </RelativeLayout>
 
@@ -123,7 +142,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="177dp"
+        android:layout_height="205dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="#CDFFB8"
         android:background="@drawable/vien">
@@ -204,6 +223,25 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:layout_marginTop="140dp"
+            android:thumbTint="@drawable/sw_thumb"
+            android:trackTint="@drawable/sw_track"></Switch>
+
+        <TextView
+            android:id="@+id/threshold_light_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="170dp"
+            android:text="Ngưỡng bật đèn   30%"
+            android:textColor="@color/black"
+            android:textSize="20dp"></TextView>
+
+        <Switch
+            android:id="@+id/sw_st_threshold_light2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="170dp"
             android:thumbTint="@drawable/sw_thumb"
             android:trackTint="@drawable/sw_track"></Switch>
 

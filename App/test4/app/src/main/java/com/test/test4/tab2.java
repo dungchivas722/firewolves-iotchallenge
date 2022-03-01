@@ -13,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class tab2 extends Fragment {
     @Nullable
@@ -31,6 +34,8 @@ public class tab2 extends Fragment {
         DatabaseReference hour_light1 = database.getReference("data/hour_light1");
         DatabaseReference time_light1 = database.getReference("data/time_light1");
         DatabaseReference threshold1 = database.getReference("data/threshold1");
+        DatabaseReference threshold_max1 = database.getReference("data/threshold_max1");
+        DatabaseReference threshold_light1 = database.getReference("data/threshold_light1");
 
         DatabaseReference minute_water2 = database.getReference("data/minute_water2");
         DatabaseReference hour_water2 = database.getReference("data/hour_water2");
@@ -39,6 +44,8 @@ public class tab2 extends Fragment {
         DatabaseReference hour_light2 = database.getReference("data/hour_light2");
         DatabaseReference time_light2 = database.getReference("data/time_light2");
         DatabaseReference threshold2 = database.getReference("data/threshold2");
+        DatabaseReference threshold_max2 = database.getReference("data/threshold_max2");
+        DatabaseReference threshold_light2 = database.getReference("data/threshold_light2");
         DatabaseReference data = database.getReference("data");
 
         DatabaseReference sw_st_water1 = database.getReference("data/sw_st_water1");
@@ -47,18 +54,22 @@ public class tab2 extends Fragment {
         DatabaseReference sw_st_light2 = database.getReference("data/sw_st_light2");
         DatabaseReference sw_st_threshold1 = database.getReference("data/sw_st_threshold1");
         DatabaseReference sw_st_threshold2 = database.getReference("data/sw_st_threshold2");
+        DatabaseReference sw_st_threshold_light1 = database.getReference("data/sw_st_threshold_light1");
+        DatabaseReference sw_st_threshold_light2 = database.getReference("data/sw_st_threshold_light2");
 
         TextView edtHour1 = v.findViewById(R.id.tv_clock_water1);
         TextView edtHourLight1 = v.findViewById(R.id.tv_clock_light1);
         TextView edtThreshold1 = v.findViewById(R.id.threshold_1);
         TextView edttime_light1 = v.findViewById(R.id.time_light1);
         TextView edttime_water1 = v.findViewById(R.id.time_water1);
+        TextView edtThreshold_light1 = v.findViewById(R.id.threshold_light_1);
 
         TextView edtHour2 = v.findViewById(R.id.tv_clock_water2);
         TextView edtHourLight2 = v.findViewById(R.id.tv_clock_light2);
         TextView edtThreshold2 = v.findViewById(R.id.threshold_2);
         TextView edttime_light2 = v.findViewById(R.id.time_light2);
         TextView edttime_water2 = v.findViewById(R.id.time_water2);
+        TextView edtThreshold_light2 = v.findViewById(R.id.threshold_light_2);
 
         Switch st_water1 = (Switch) v.findViewById(R.id.sw_st_water1);
         st_water1.setOnClickListener(new View.OnClickListener() {
@@ -345,14 +356,14 @@ public class tab2 extends Fragment {
                 if (checked){
                     // Your code
                     sw_st_threshold1.setValue(1);
-                    String[] listThreshold = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85"};
+                    String[] listThresholdmax = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","90","95","100"};
                     AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
-                    tBuilder.setTitle("Chọn ngưỡng");
-                    tBuilder.setSingleChoiceItems(listThreshold, -1, new DialogInterface.OnClickListener() {
+                    tBuilder.setTitle("Chọn ngưỡng trên");
+                    tBuilder.setSingleChoiceItems(listThresholdmax, -1, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            edtThreshold1.setText("Dưới "+ listThreshold[i] + "% tưới");
-                            threshold1.setValue(listThreshold[i]);
+                            edtThreshold1.setText("Ngưỡng "+ n + "%" +" - "+ listThresholdmax[i] + "% tưới");
+                            threshold_max1.setValue(listThresholdmax[i]);
                         }
                     });
                     tBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -360,7 +371,26 @@ public class tab2 extends Fragment {
                         public void onClick(DialogInterface dialogInterface, int i) {
                         }
                     });
-                    AlertDialog mDialog = tBuilder.create();
+                    AlertDialog tDialog = tBuilder.create();
+                    tDialog.show();
+
+
+                    String[] listThreshold = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85"};
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                    mBuilder.setTitle("Chọn ngưỡng dưới");
+                    mBuilder.setSingleChoiceItems(listThreshold, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            n = listThreshold[i];
+                            threshold1.setValue(listThreshold[i]);
+                        }
+                    });
+                    mBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog mDialog = mBuilder.create();
                     mDialog.show();
                 }
                 else{
@@ -377,14 +407,66 @@ public class tab2 extends Fragment {
                 if (checked){
                     // Your code
                     sw_st_threshold2.setValue(1);
+
+                    String[] listThresholdmax = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","90","95","100"};
+                    AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
+                    tBuilder.setTitle("Chọn ngưỡng trên");
+                    tBuilder.setSingleChoiceItems(listThresholdmax, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edtThreshold2.setText("Ngưỡng "+ n + "%" +" - "+ listThresholdmax[i] + "% tưới");
+                            threshold_max2.setValue(listThresholdmax[i]);
+                        }
+                    });
+                    tBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog tDialog = tBuilder.create();
+                    tDialog.show();
+
+                    String[] listThreshold = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85"};
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                    mBuilder.setTitle("Chọn ngưỡng dưới");
+                    mBuilder.setSingleChoiceItems(listThreshold, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            n=listThreshold[i];
+                            threshold2.setValue(listThreshold[i]);
+                        }
+                    });
+                    mBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog mDialog = mBuilder.create();
+                    mDialog.show();
+                }
+                else{
+                    // Your code
+                    sw_st_threshold2.setValue(0);
+                }
+            }
+        });
+
+        Switch st_threshold_light1 = (Switch) v.findViewById(R.id.sw_st_threshold_light1);
+        st_threshold_light1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((Switch) v).isChecked();
+                if (checked){
+                    // Your code
+                    sw_st_threshold_light1.setValue(1);
                     String[] listThreshold = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85"};
                     AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
-                    tBuilder.setTitle("Chọn ngưỡng");
+                    tBuilder.setTitle("Chọn ngưỡng bật đèn");
                     tBuilder.setSingleChoiceItems(listThreshold, -1, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            edtThreshold2.setText("Dưới "+ listThreshold[i] + "% tưới");
-                            threshold2.setValue(listThreshold[i]);
+                            edtThreshold_light1.setText("Dưới "+ listThreshold[i] + "% bật đèn");
+                            threshold_light1.setValue(listThreshold[i]);
                         }
                     });
                     tBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -397,8 +479,106 @@ public class tab2 extends Fragment {
                 }
                 else{
                     // Your code
-                    sw_st_threshold2.setValue(0);
+                    sw_st_threshold_light1.setValue(0);
                 }
+            }
+        });
+        Switch st_threshold_light2 = (Switch) v.findViewById(R.id.sw_st_threshold_light2);
+        st_threshold_light2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((Switch) v).isChecked();
+                if (checked){
+                    // Your code
+                    sw_st_threshold_light2.setValue(1);
+                    String[] listThreshold = new String[]{"0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85"};
+                    AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
+                    tBuilder.setTitle("Chọn ngưỡng bật đèn");
+                    tBuilder.setSingleChoiceItems(listThreshold, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edtThreshold_light2.setText("Dưới "+ listThreshold[i] + "% bật đèn");
+                            threshold_light2.setValue(listThreshold[i]);
+                        }
+                    });
+                    tBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog mDialog = tBuilder.create();
+                    mDialog.show();
+                }
+                else{
+                    // Your code
+                    sw_st_threshold_light2.setValue(0);
+                }
+            }
+        });
+
+        // READ DATA FROM DATABASE
+        data.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                data value = dataSnapshot.getValue(data.class);
+                String[] setting = value.toString().split(",");
+                int[] parts = value.toInt();
+
+                TextView hw1 = v.findViewById(R.id.tv_clock_water1);
+                TextView tw1 = v.findViewById(R.id.time_water1);
+                TextView hl1 = v.findViewById(R.id.tv_clock_light1);
+                TextView tl1 = v.findViewById(R.id.time_light1);
+                TextView thw1 = v.findViewById(R.id.threshold_1);
+                TextView thl1 = v.findViewById(R.id.threshold_light_1);
+
+                TextView hw2 = v.findViewById(R.id.tv_clock_water2);
+                TextView tw2 = v.findViewById(R.id.time_water2);
+                TextView hl2 = v.findViewById(R.id.tv_clock_light2);
+                TextView tl2 = v.findViewById(R.id.time_light2);
+                TextView thw2 = v.findViewById(R.id.threshold_2);
+                TextView thl2 = v.findViewById(R.id.threshold_light_2);
+
+                hw1.setText("Hẹn giờ tưới cây  " + setting[2] + ":" + setting[0]);
+                hw2.setText("Hẹn giờ tưới cây  " + setting[3] + ":" + setting[1]);
+                tw1.setText("Thời gian tưới  "+setting[4] + "p");
+                tw2.setText("Thời gian tưới  "+setting[5] + "p");
+                hl1.setText("Hẹn giờ bật đèn  " + setting[8] + ":" + setting[6]);
+                hl2.setText("Hẹn giờ bật đèn  " + setting[9] + ":" + setting[7]);
+                tl1.setText("Thời gian bật  "+setting[10] + "p");
+                tl2.setText("Thời gian bật  "+setting[11] + "p");
+                thw1.setText("Ngưỡng "+ setting[12] + "%" +" - "+ setting[16] + "% tưới");
+                thw2.setText("Ngưỡng "+ setting[13] + "%" +" - "+ setting[17] + "% tưới");
+                thl1.setText("Dưới "+setting[14] + "% bật đèn");
+                thl2.setText("Dưới "+setting[15] + "% bật đèn");
+
+                if(parts[12] == 1) st_water1.setChecked(true);
+                else st_water1.setChecked(false);
+                if(parts[13] == 1) st_water2.setChecked(true);
+                else st_water2.setChecked(false);
+                if(parts[14] == 1) st_light1.setChecked(true);
+                else st_light1.setChecked(false);
+                if(parts[15] == 1) st_light2.setChecked(true);
+                else st_light2.setChecked(false);
+                if(parts[16] == 1) st_threshold1.setChecked(true);
+                else st_threshold1.setChecked(false);
+                if(parts[17] == 1) st_threshold2.setChecked(true);
+                else st_threshold2.setChecked(false);
+                if(parts[18] == 1) st_threshold_light1.setChecked(true);
+                else st_threshold_light1.setChecked(false);
+                if(parts[19] == 1) st_threshold_light2.setChecked(true);
+                else st_threshold_light2.setChecked(false);
+
+//                edtHour.setText(setting[0] + " :");
+//                edtMinute.setText(setting[1] + " tưới");
+//                edtThreshold.setText(setting[2] + "% tưới");
+//                edtTime.setText(setting[3] + " phút");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
             }
         });
 

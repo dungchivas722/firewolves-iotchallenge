@@ -32,25 +32,15 @@ public class tab1 extends Fragment {
         DatabaseReference humidity_soil2 = database.getReference("data/humidity_soil2");
         DatabaseReference data = database.getReference("data");
 
-//
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("message");
-//
-//        myRef.setValue("Hello, World!");
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                edtHour2.setText(value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//            }
-//        });
+        TextView te1 = v.findViewById(R.id.tempareture1);
+        TextView ai1 = v.findViewById(R.id.air1);
+        TextView li1 = v.findViewById(R.id.light1);
+        TextView hu1 = v.findViewById(R.id.humidity_soil1);
+
+        TextView te2 = v.findViewById(R.id.tempareture2);
+        TextView ai2 = v.findViewById(R.id.air2);
+        TextView li2 = v.findViewById(R.id.light2);
+        TextView hu2 = v.findViewById(R.id.humidity_soil2);
 
         Switch pumb1 = (Switch) v.findViewById(R.id.sw_pumb1);
         pumb1.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +103,60 @@ public class tab1 extends Fragment {
                 }
             }
         });
+
+        // READ DATA FROM DATABASE
+        data.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                data value = dataSnapshot.getValue(data.class);
+                String[] setting = value.toString().split(",");
+                int[] parts = value.toInt();
+
+                TextView t1 = v.findViewById(R.id.tempareture1);
+                TextView a1 = v.findViewById(R.id.air1);
+                TextView l1 = v.findViewById(R.id.light1);
+                TextView s1 = v.findViewById(R.id.hum_soil1);
+
+                TextView t2 = v.findViewById(R.id.tempareture2);
+                TextView a2 = v.findViewById(R.id.air2);
+                TextView l2 = v.findViewById(R.id.light2);
+                TextView s2 = v.findViewById(R.id.hum_soil2);
+
+                s1.setText(parts[4] + "%");
+                s2.setText(parts[5] + "%");
+                t1.setText(parts[6] + " C");
+                t2.setText(parts[7] + " C");
+                a1.setText(parts[8] + "%");
+                a2.setText(parts[9] + "%");
+                l1.setText(parts[10] + "%");
+                l2.setText(parts[11] + "%");
+
+                if(parts[0] == 1) pumb1.setChecked(true);
+                else pumb1.setChecked(false);
+
+                if(parts[1] == 1) pumb2.setChecked(true);
+                else pumb2.setChecked(false);
+
+                if(parts[2] == 1) light1.setChecked(true);
+                else light1.setChecked(false);
+
+                if(parts[3] == 1) light2.setChecked(true);
+                else light2.setChecked(false);
+
+//                edtHour.setText(setting[0] + " :");
+//                edtMinute.setText(setting[1] + " tưới");
+//                edtThreshold.setText(setting[2] + "% tưới");
+//                edtTime.setText(setting[3] + " phút");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
         return v;
     }
 }

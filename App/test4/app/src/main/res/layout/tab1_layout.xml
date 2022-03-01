@@ -112,13 +112,13 @@
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    app:srcCompat="@drawable/co2" />
+                    app:srcCompat="@drawable/soil" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/imageView14"
-                    android:text="CO2"
+                    android:text="Soil humidity"
                     android:textColor="@color/black"
                     android:textSize="18dp"></TextView>
 
@@ -186,15 +186,6 @@
                 android:text="Tưới cây"
                 android:textColor="#000000"
                 android:textSize="20dp"></TextView>
-
-            <TextView
-                android:id="@+id/humidity_soil1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
-                android:layout_marginTop="2dp"
-                android:text="40%"
-                android:textSize="18dp"></TextView>
 
         </RelativeLayout>
 
@@ -328,13 +319,13 @@
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    app:srcCompat="@drawable/co2" />
+                    app:srcCompat="@drawable/soil" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/imageView24"
-                    android:text="CO2"
+                    android:text="Soil humidity"
                     android:textColor="@color/black"
                     android:textSize="18dp"></TextView>
 
@@ -402,15 +393,6 @@
                 android:text="Tưới cây"
                 android:textColor="#000000"
                 android:textSize="20dp"></TextView>
-
-            <TextView
-                android:id="@+id/humidity_soil2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
-                android:layout_marginTop="2dp"
-                android:text="40%"
-                android:textSize="18dp"></TextView>
 
         </RelativeLayout>
 
