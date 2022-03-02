@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="98dp"
-            android:text="Thời gian bật:   30p"
+            android:text="Hẹn thời gian tắt:   20:30"
             android:textColor="@color/black"
             android:textSize="19dp"></TextView>
 
@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="98dp"
-            android:text="Thời gian bật:   30p"
+            android:text="Hẹn thời gian tắt:   20:30"
             android:textColor="@color/black"
             android:textSize="19dp"></TextView>
 

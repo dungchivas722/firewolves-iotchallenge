@@ -17,19 +17,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class tab1 extends Fragment {
     @Nullable
+    private List<data> vuonList = new ArrayList<data>();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab1_layout,container,false);
-
+        
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dt_sw_pumb1 = database.getReference("data/sw_pumb1");
-        DatabaseReference sw_pumb2 = database.getReference("data/sw_pumb2");
-        DatabaseReference sw_light1 = database.getReference("data/sw_light1");
-        DatabaseReference sw_light2 = database.getReference("data/sw_light2");
-        DatabaseReference humidity_soil1 = database.getReference("data/humidity_soil1");
-        DatabaseReference humidity_soil2 = database.getReference("data/humidity_soil2");
+        DatabaseReference dt_sw_pumb1 = database.getReference("data/1/sw_pumb");
+        DatabaseReference sw_pumb2 = database.getReference("data/2/sw_pumb");
+        DatabaseReference sw_light1 = database.getReference("data/1/sw_light");
+        DatabaseReference sw_light2 = database.getReference("data/2/sw_light");
+        DatabaseReference humidity_soil1 = database.getReference("data/1/humidity_soil");
+        DatabaseReference humidity_soil2 = database.getReference("data/2/humidity_soil");
         DatabaseReference data = database.getReference("data");
 
         TextView te1 = v.findViewById(R.id.tempareture1);
@@ -110,9 +115,17 @@ public class tab1 extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                data value = dataSnapshot.getValue(data.class);
-                String[] setting = value.toString().split(",");
-                int[] parts = value.toInt();
+                vuonList.clear();
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    data vuon = snap.getValue(data.class);
+                    vuonList.add(vuon);
+                }
+                data vuon1 = (com.test.test4.data) vuonList.get(0);
+                data vuon2 = (com.test.test4.data) vuonList.get(1);
+                String[] setting1 = vuon1.toString().split(",");
+                String[] setting2 = vuon2.toString().split(",");
+                int[] parts1 = vuon1.toInt();
+                int[] parts2 = vuon2.toInt();
 
                 TextView t1 = v.findViewById(R.id.tempareture1);
                 TextView a1 = v.findViewById(R.id.air1);
@@ -124,31 +137,27 @@ public class tab1 extends Fragment {
                 TextView l2 = v.findViewById(R.id.light2);
                 TextView s2 = v.findViewById(R.id.hum_soil2);
 
-                s1.setText(parts[4] + "%");
-                s2.setText(parts[5] + "%");
-                t1.setText(parts[6] + " C");
-                t2.setText(parts[7] + " C");
-                a1.setText(parts[8] + "%");
-                a2.setText(parts[9] + "%");
-                l1.setText(parts[10] + "%");
-                l2.setText(parts[11] + "%");
+                s1.setText(parts1[2] + "%");
+                s2.setText(parts2[2] + "%");
+                t1.setText(parts1[3] + " C");
+                t2.setText(parts2[3] + " C");
+                a1.setText(parts1[4] + "%");
+                a2.setText(parts2[4] + "%");
+                l1.setText(parts1[5] + "%");
+                l2.setText(parts2[5] + "%");
 
-                if(parts[0] == 1) pumb1.setChecked(true);
+
+                if(parts1[0] == 1) pumb1.setChecked(true);
                 else pumb1.setChecked(false);
 
-                if(parts[1] == 1) pumb2.setChecked(true);
+                if(parts2[0] == 1) pumb2.setChecked(true);
                 else pumb2.setChecked(false);
 
-                if(parts[2] == 1) light1.setChecked(true);
+                if(parts1[1] == 1) light1.setChecked(true);
                 else light1.setChecked(false);
 
-                if(parts[3] == 1) light2.setChecked(true);
+                if(parts2[1] == 1) light2.setChecked(true);
                 else light2.setChecked(false);
-
-//                edtHour.setText(setting[0] + " :");
-//                edtMinute.setText(setting[1] + " tưới");
-//                edtThreshold.setText(setting[2] + "% tưới");
-//                edtTime.setText(setting[3] + " phút");
             }
 
             @Override

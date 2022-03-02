@@ -19,43 +19,49 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class tab2 extends Fragment {
     @Nullable
     private String n;
+    private List<data> vuonList = new ArrayList<data>();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab2_layout,container,false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference minute_water1 = database.getReference("data/minute_water1");
-        DatabaseReference hour_water1 = database.getReference("data/hour_water1");
-        DatabaseReference time_water1 = database.getReference("data/time_water1");
-        DatabaseReference minute_light1 = database.getReference("data/minute_light1");
-        DatabaseReference hour_light1 = database.getReference("data/hour_light1");
-        DatabaseReference time_light1 = database.getReference("data/time_light1");
-        DatabaseReference threshold1 = database.getReference("data/threshold1");
-        DatabaseReference threshold_max1 = database.getReference("data/threshold_max1");
-        DatabaseReference threshold_light1 = database.getReference("data/threshold_light1");
+        DatabaseReference minute_water1 = database.getReference("data/1/minute_water");
+        DatabaseReference hour_water1 = database.getReference("data/1/hour_water");
+        DatabaseReference time_water1 = database.getReference("data/1/time_water");
+        DatabaseReference minute_light1 = database.getReference("data/1/minute_light");
+        DatabaseReference hour_light1 = database.getReference("data/1/hour_light");
+        DatabaseReference threshold1 = database.getReference("data/1/threshold");
+        DatabaseReference threshold_max1 = database.getReference("data/1/threshold_max");
+        DatabaseReference threshold_light1 = database.getReference("data/1/threshold_light");
+        DatabaseReference minute_lightOff1 = database.getReference("data/1/hour_light_off");
+        DatabaseReference hour_lightOff1 = database.getReference("data/1/hour_light_on");
 
-        DatabaseReference minute_water2 = database.getReference("data/minute_water2");
-        DatabaseReference hour_water2 = database.getReference("data/hour_water2");
-        DatabaseReference time_water2 = database.getReference("data/time_water2");
-        DatabaseReference minute_light2 = database.getReference("data/minute_light2");
-        DatabaseReference hour_light2 = database.getReference("data/hour_light2");
-        DatabaseReference time_light2 = database.getReference("data/time_light2");
-        DatabaseReference threshold2 = database.getReference("data/threshold2");
-        DatabaseReference threshold_max2 = database.getReference("data/threshold_max2");
-        DatabaseReference threshold_light2 = database.getReference("data/threshold_light2");
+        DatabaseReference minute_water2 = database.getReference("data/2/minute_water");
+        DatabaseReference hour_water2 = database.getReference("data/2/hour_water");
+        DatabaseReference time_water2 = database.getReference("data/2/time_water");
+        DatabaseReference minute_light2 = database.getReference("data/2/minute_light");
+        DatabaseReference hour_light2 = database.getReference("data/2/hour_light");
+        DatabaseReference threshold2 = database.getReference("data/2/threshold");
+        DatabaseReference threshold_max2 = database.getReference("data/2/threshold_max");
+        DatabaseReference threshold_light2 = database.getReference("data/2/threshold_light");
+        DatabaseReference minute_lightOff2 = database.getReference("data/2/hour_light_off");
+        DatabaseReference hour_lightOff2 = database.getReference("data/2/hour_light_on");
         DatabaseReference data = database.getReference("data");
 
-        DatabaseReference sw_st_water1 = database.getReference("data/sw_st_water1");
-        DatabaseReference sw_st_water2 = database.getReference("data/sw_st_water2");
-        DatabaseReference sw_st_light1 = database.getReference("data/sw_st_light1");
-        DatabaseReference sw_st_light2 = database.getReference("data/sw_st_light2");
-        DatabaseReference sw_st_threshold1 = database.getReference("data/sw_st_threshold1");
-        DatabaseReference sw_st_threshold2 = database.getReference("data/sw_st_threshold2");
-        DatabaseReference sw_st_threshold_light1 = database.getReference("data/sw_st_threshold_light1");
-        DatabaseReference sw_st_threshold_light2 = database.getReference("data/sw_st_threshold_light2");
+        DatabaseReference sw_st_water1 = database.getReference("data/1/sw_st_water");
+        DatabaseReference sw_st_water2 = database.getReference("data/2/sw_st_water");
+        DatabaseReference sw_st_light1 = database.getReference("data/1/sw_st_light");
+        DatabaseReference sw_st_light2 = database.getReference("data/2/sw_st_light");
+        DatabaseReference sw_st_threshold1 = database.getReference("data/1/sw_st_threshold");
+        DatabaseReference sw_st_threshold2 = database.getReference("data/2/sw_st_threshold");
+        DatabaseReference sw_st_threshold_light1 = database.getReference("data/1/sw_st_threshold_light");
+        DatabaseReference sw_st_threshold_light2 = database.getReference("data/2/sw_st_threshold_light");
 
         TextView edtHour1 = v.findViewById(R.id.tv_clock_water1);
         TextView edtHourLight1 = v.findViewById(R.id.tv_clock_light1);
@@ -218,25 +224,44 @@ public class tab2 extends Fragment {
                 if (checked){
                     // Your code
                     sw_st_light1.setValue(1);
-                    String[] listTime = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
-                    AlertDialog.Builder pBuilder = new AlertDialog.Builder(getActivity());
-                    pBuilder.setTitle("Chọn thời gian bật đèn ");
-                    pBuilder.setSingleChoiceItems(listTime, -1, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            edttime_light1.setText(listTime[i] + " Phút");
-                            time_light1.setValue(listTime[i]);
-                        }
-                    });
-                    pBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-                    AlertDialog pDialog = pBuilder.create();
-                    pDialog.show();
-
                     String[] listMinute = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
+                    AlertDialog.Builder tfBuilder = new AlertDialog.Builder(getActivity());
+                    tfBuilder.setTitle("Chọn phút tắt");
+                    tfBuilder.setSingleChoiceItems(listMinute, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edttime_light1.setText("Hẹn giờ tưới cây  "+ n + ":" + listMinute[i] + " tưới");
+                            minute_lightOff1.setValue(listMinute[i]);
+                        }
+                    });
+                    tfBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog tfDialog = tfBuilder.create();
+                    tfDialog.show();
+
+                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
+                    AlertDialog.Builder mfBuilder = new AlertDialog.Builder(getActivity());
+                    mfBuilder.setTitle("Chọn giờ tắt");
+                    mfBuilder.setSingleChoiceItems(listHour, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            edtHour.setText(listHour[i] + " :");
+                            n = listHour[i];
+                            hour_lightOff1.setValue(listHour[i]);
+                        }
+                    });
+                    mfBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog mfDialog = mfBuilder.create();
+                    mfDialog.show();
+
+//                    String[] listMinute = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
                     AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
                     tBuilder.setTitle("Phút");
                     tBuilder.setSingleChoiceItems(listMinute, -1, new DialogInterface.OnClickListener() {
@@ -254,7 +279,7 @@ public class tab2 extends Fragment {
                     AlertDialog tDialog = tBuilder.create();
                     tDialog.show();
 
-                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
+//                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                     mBuilder.setTitle("Giờ bật đèn");
                     mBuilder.setSingleChoiceItems(listHour, -1, new DialogInterface.OnClickListener() {
@@ -287,27 +312,46 @@ public class tab2 extends Fragment {
                 if (checked){
                     // Your code
                     sw_st_light2.setValue(1);
-                    String[] listTime = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
-                    AlertDialog.Builder pBuilder = new AlertDialog.Builder(getActivity());
-                    pBuilder.setTitle("Chọn thời gian tưới");
-                    pBuilder.setSingleChoiceItems(listTime, -1, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            edttime_light2.setText(listTime[i] + " Phút");
-                            time_light2.setValue(listTime[i]);
-                        }
-                    });
-                    pBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-                    AlertDialog pDialog = pBuilder.create();
-                    pDialog.show();
-
                     String[] listMinute = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
+                    AlertDialog.Builder tfBuilder = new AlertDialog.Builder(getActivity());
+                    tfBuilder.setTitle("Chọn phút tắt");
+                    tfBuilder.setSingleChoiceItems(listMinute, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edttime_light2.setText("Hẹn giờ tưới cây  "+ n + ":" + listMinute[i] + " tưới");
+                            minute_lightOff2.setValue(listMinute[i]);
+                        }
+                    });
+                    tfBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog tfDialog = tfBuilder.create();
+                    tfDialog.show();
+
+                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
+                    AlertDialog.Builder mfBuilder = new AlertDialog.Builder(getActivity());
+                    mfBuilder.setTitle("Chọn giờ tắt");
+                    mfBuilder.setSingleChoiceItems(listHour, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            edtHour.setText(listHour[i] + " :");
+                            n = listHour[i];
+                            hour_lightOff2.setValue(listHour[i]);
+                        }
+                    });
+                    mfBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    AlertDialog mfDialog = mfBuilder.create();
+                    mfDialog.show();
+
+//                    String[] listMinute = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"};
                     AlertDialog.Builder tBuilder = new AlertDialog.Builder(getActivity());
-                    tBuilder.setTitle("Chọn phút");
+                    tBuilder.setTitle("Chọn phút bật");
                     tBuilder.setSingleChoiceItems(listMinute, -1, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -323,9 +367,9 @@ public class tab2 extends Fragment {
                     AlertDialog tDialog = tBuilder.create();
                     tDialog.show();
 
-                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
+//                    String[] listHour = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-                    mBuilder.setTitle("Chọn giờ");
+                    mBuilder.setTitle("Chọn giờ bật");
                     mBuilder.setSingleChoiceItems(listHour, -1, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -522,9 +566,17 @@ public class tab2 extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                data value = dataSnapshot.getValue(data.class);
-                String[] setting = value.toString().split(",");
-                int[] parts = value.toInt();
+                vuonList.clear();
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    data vuon = snap.getValue(data.class);
+                    vuonList.add(vuon);
+                }
+                data vuon1 = (com.test.test4.data) vuonList.get(0);
+                data vuon2 = (com.test.test4.data) vuonList.get(1);
+                String[] setting1 = vuon1.toString().split(",");
+                String[] setting2 = vuon2.toString().split(",");
+                int[] parts1 = vuon1.toInt();
+                int[] parts2 = vuon2.toInt();
 
                 TextView hw1 = v.findViewById(R.id.tv_clock_water1);
                 TextView tw1 = v.findViewById(R.id.time_water1);
@@ -540,40 +592,36 @@ public class tab2 extends Fragment {
                 TextView thw2 = v.findViewById(R.id.threshold_2);
                 TextView thl2 = v.findViewById(R.id.threshold_light_2);
 
-                hw1.setText("Hẹn giờ tưới cây  " + setting[2] + ":" + setting[0]);
-                hw2.setText("Hẹn giờ tưới cây  " + setting[3] + ":" + setting[1]);
-                tw1.setText("Thời gian tưới  "+setting[4] + "p");
-                tw2.setText("Thời gian tưới  "+setting[5] + "p");
-                hl1.setText("Hẹn giờ bật đèn  " + setting[8] + ":" + setting[6]);
-                hl2.setText("Hẹn giờ bật đèn  " + setting[9] + ":" + setting[7]);
-                tl1.setText("Thời gian bật  "+setting[10] + "p");
-                tl2.setText("Thời gian bật  "+setting[11] + "p");
-                thw1.setText("Ngưỡng "+ setting[12] + "%" +" - "+ setting[16] + "% tưới");
-                thw2.setText("Ngưỡng "+ setting[13] + "%" +" - "+ setting[17] + "% tưới");
-                thl1.setText("Dưới "+setting[14] + "% bật đèn");
-                thl2.setText("Dưới "+setting[15] + "% bật đèn");
+                hw1.setText("Hẹn giờ tưới cây  " + setting1[1] + ":" + setting1[0]);
+                hw2.setText("Hẹn giờ tưới cây  " + setting2[1] + ":" + setting2[0]);
+                tw1.setText("Thời gian tưới  "+setting1[2] + "p");
+                tw2.setText("Thời gian tưới  "+setting2[2] + "p");
+                hl1.setText("Hẹn giờ bật đèn  " + setting1[4] + ":" + setting1[3]);
+                hl2.setText("Hẹn giờ bật đèn  " + setting2[4] + ":" + setting2[3]);
+                tl1.setText("Hẹn giờ tắt đèn  " + setting1[5] + ":" + setting1[9]);
+                tl2.setText("Hẹn giờ tắt đèn  " + setting2[5] + ":" + setting2[9]);
+                thw1.setText("Ngưỡng "+ setting1[6] + "%" +" - "+ setting1[8] + "% tưới");
+                thw2.setText("Ngưỡng "+ setting2[6] + "%" +" - "+ setting2[8] + "% tưới");
+                thl1.setText("Dưới "+setting1[7] + "% bật đèn");
+                thl2.setText("Dưới "+setting2[7] + "% bật đèn");
 
-                if(parts[12] == 1) st_water1.setChecked(true);
+                if(parts1[6] == 1) st_water1.setChecked(true);
                 else st_water1.setChecked(false);
-                if(parts[13] == 1) st_water2.setChecked(true);
+                if(parts2[6] == 1) st_water2.setChecked(true);
                 else st_water2.setChecked(false);
-                if(parts[14] == 1) st_light1.setChecked(true);
+                if(parts1[7] == 1) st_light1.setChecked(true);
                 else st_light1.setChecked(false);
-                if(parts[15] == 1) st_light2.setChecked(true);
+                if(parts2[7] == 1) st_light2.setChecked(true);
                 else st_light2.setChecked(false);
-                if(parts[16] == 1) st_threshold1.setChecked(true);
+                if(parts1[8] == 1) st_threshold1.setChecked(true);
                 else st_threshold1.setChecked(false);
-                if(parts[17] == 1) st_threshold2.setChecked(true);
+                if(parts2[8] == 1) st_threshold2.setChecked(true);
                 else st_threshold2.setChecked(false);
-                if(parts[18] == 1) st_threshold_light1.setChecked(true);
+                if(parts1[9] == 1) st_threshold_light1.setChecked(true);
                 else st_threshold_light1.setChecked(false);
-                if(parts[19] == 1) st_threshold_light2.setChecked(true);
+                if(parts2[9] == 1) st_threshold_light2.setChecked(true);
                 else st_threshold_light2.setChecked(false);
 
-//                edtHour.setText(setting[0] + " :");
-//                edtMinute.setText(setting[1] + " tưới");
-//                edtThreshold.setText(setting[2] + "% tưới");
-//                edtTime.setText(setting[3] + " phút");
             }
 
             @Override
