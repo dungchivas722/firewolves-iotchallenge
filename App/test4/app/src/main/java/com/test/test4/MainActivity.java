@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         if (ret == true) {
             msg = "Thiết bị đã kết nối internet";
         } else {
-            msg = "Thiết bị chưa kết nối internet";
+            msg = "Vui lòng kết nối internet";
         }
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

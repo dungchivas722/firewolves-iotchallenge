@@ -31,27 +31,27 @@ public class tab2 extends Fragment {
         View v = inflater.inflate(R.layout.tab2_layout,container,false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference minute_water1 = database.getReference("data/1/minute_water");
-        DatabaseReference hour_water1 = database.getReference("data/1/hour_water");
+        DatabaseReference minute_water1 = database.getReference("data/1/timeWater/minute");
+        DatabaseReference hour_water1 = database.getReference("data/1/timeWater/hour");
         DatabaseReference time_water1 = database.getReference("data/1/time_water");
-        DatabaseReference minute_light1 = database.getReference("data/1/minute_light");
-        DatabaseReference hour_light1 = database.getReference("data/1/hour_light");
+        DatabaseReference minute_light1 = database.getReference("data/1/timeLightOn/minute");
+        DatabaseReference hour_light1 = database.getReference("data/1/timeLightOn/hour");
         DatabaseReference threshold1 = database.getReference("data/1/threshold");
         DatabaseReference threshold_max1 = database.getReference("data/1/threshold_max");
         DatabaseReference threshold_light1 = database.getReference("data/1/threshold_light");
-        DatabaseReference minute_lightOff1 = database.getReference("data/1/hour_light_off");
-        DatabaseReference hour_lightOff1 = database.getReference("data/1/hour_light_on");
+        DatabaseReference minute_lightOff1 = database.getReference("data/1/timeLightOff/minute");
+        DatabaseReference hour_lightOff1 = database.getReference("data/1/timeLightOff/hour");
 
-        DatabaseReference minute_water2 = database.getReference("data/2/minute_water");
-        DatabaseReference hour_water2 = database.getReference("data/2/hour_water");
+        DatabaseReference minute_water2 = database.getReference("data/2/timeWater/minute");
+        DatabaseReference hour_water2 = database.getReference("data/2/timeWater/hour");
         DatabaseReference time_water2 = database.getReference("data/2/time_water");
-        DatabaseReference minute_light2 = database.getReference("data/2/minute_light");
-        DatabaseReference hour_light2 = database.getReference("data/2/hour_light");
+        DatabaseReference minute_light2 = database.getReference("data/2/timeLightOn/minute");
+        DatabaseReference hour_light2 = database.getReference("data/2/timeLightOn/hour");
         DatabaseReference threshold2 = database.getReference("data/2/threshold");
         DatabaseReference threshold_max2 = database.getReference("data/2/threshold_max");
         DatabaseReference threshold_light2 = database.getReference("data/2/threshold_light");
-        DatabaseReference minute_lightOff2 = database.getReference("data/2/hour_light_off");
-        DatabaseReference hour_lightOff2 = database.getReference("data/2/hour_light_on");
+        DatabaseReference minute_lightOff2 = database.getReference("data/2/timeLightOff/minute");
+        DatabaseReference hour_lightOff2 = database.getReference("data/2/timeLightOff/hour");
         DatabaseReference data = database.getReference("data");
 
         DatabaseReference sw_st_water1 = database.getReference("data/1/sw_st_water");
@@ -598,12 +598,12 @@ public class tab2 extends Fragment {
                 tw2.setText("Thời gian tưới  "+setting2[2] + "p");
                 hl1.setText("Hẹn giờ bật đèn  " + setting1[4] + ":" + setting1[3]);
                 hl2.setText("Hẹn giờ bật đèn  " + setting2[4] + ":" + setting2[3]);
-                tl1.setText("Hẹn giờ tắt đèn  " + setting1[5] + ":" + setting1[9]);
-                tl2.setText("Hẹn giờ tắt đèn  " + setting2[5] + ":" + setting2[9]);
-                thw1.setText("Ngưỡng "+ setting1[6] + "%" +" - "+ setting1[8] + "% tưới");
-                thw2.setText("Ngưỡng "+ setting2[6] + "%" +" - "+ setting2[8] + "% tưới");
-                thl1.setText("Dưới "+setting1[7] + "% bật đèn");
-                thl2.setText("Dưới "+setting2[7] + "% bật đèn");
+                tl1.setText("Hẹn giờ tắt đèn  " + setting1[5] + ":" + setting1[6]);
+                tl2.setText("Hẹn giờ tắt đèn  " + setting2[5] + ":" + setting2[6]);
+                thw1.setText("Ngưỡng "+ setting1[7] + "%" +" - "+ setting1[9] + "% tưới");
+                thw2.setText("Ngưỡng "+ setting2[7] + "%" +" - "+ setting2[9] + "% tưới");
+                thl1.setText("Dưới "+setting1[8] + "% bật đèn");
+                thl2.setText("Dưới "+setting2[8] + "% bật đèn");
 
                 if(parts1[6] == 1) st_water1.setChecked(true);
                 else st_water1.setChecked(false);
