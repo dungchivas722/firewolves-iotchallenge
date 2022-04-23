@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="uc.module.setup.componentSetup.com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt.debug#com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:10.2.1.20201103.gcc" propertyScope="project">
-  <folder name="gecko_sdk_4.0.1">
+  <folder name="gecko_sdk_4.0.2">
     <folder name="platform">
       <folder name="Device">
         <folder name="SiliconLabs">
@@ -71,6 +71,8 @@
         <folder name="inc">
           <file name="sl_atomic.h" uri="studio:/sdk/platform/common/inc/sl_atomic.h"/>
           <file name="sl_enum.h" uri="studio:/sdk/platform/common/inc/sl_enum.h"/>
+          <file name="sl_string.h" uri="studio:/sdk/platform/common/inc/sl_string.h"/>
+          <file name="sl_slist.h" uri="studio:/sdk/platform/common/inc/sl_slist.h"/>
           <file name="sl_status.h" uri="studio:/sdk/platform/common/inc/sl_status.h"/>
         </folder>
         <folder name="toolchain">
@@ -83,20 +85,35 @@
             <file name="sl_gcc_preinclude.h" uri="studio:/sdk/platform/common/toolchain/inc/sl_gcc_preinclude.h"/>
           </folder>
         </folder>
-      </folder>
-      <folder name="CMSIS">
-        <folder name="Include">
-          <file name="arm_common_tables.h" uri="studio:/sdk/platform/CMSIS/Include/arm_common_tables.h"/>
-          <file name="arm_const_structs.h" uri="studio:/sdk/platform/CMSIS/Include/arm_const_structs.h"/>
-          <file name="arm_math.h" uri="studio:/sdk/platform/CMSIS/Include/arm_math.h"/>
-          <file name="cmsis_compiler.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_compiler.h"/>
-          <file name="cmsis_version.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_version.h"/>
-          <file name="cmsis_gcc.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_gcc.h"/>
-          <file name="core_cm33.h" uri="studio:/sdk/platform/CMSIS/Include/core_cm33.h"/>
-          <file name="mpu_armv8.h" uri="studio:/sdk/platform/CMSIS/Include/mpu_armv8.h"/>
+        <folder name="src">
+          <file name="sl_string.c" uri="studio:/sdk/platform/common/src/sl_string.c"/>
+          <file name="sl_slist.c" uri="studio:/sdk/platform/common/src/sl_slist.c"/>
         </folder>
       </folder>
       <folder name="service">
+        <folder name="cli">
+          <folder name="inc">
+            <file name="sl_cli.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli.h"/>
+            <file name="sl_cli_types.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_types.h"/>
+            <file name="sl_cli_command.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_command.h"/>
+            <file name="sl_cli_input.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_input.h"/>
+            <file name="sl_cli_tokenize.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_tokenize.h"/>
+            <file name="sl_cli_arguments.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_arguments.h"/>
+            <file name="sl_cli_delay.h" uri="studio:/sdk/platform/service/cli/inc/sl_cli_delay.h"/>
+          </folder>
+          <folder name="src">
+            <file name="sl_cli_input.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_input.c"/>
+            <file name="sl_cli_tokenize.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_tokenize.c"/>
+            <file name="sl_cli_command.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_command.c"/>
+            <file name="sl_cli.c" uri="studio:/sdk/platform/service/cli/src/sl_cli.c"/>
+            <file name="sl_cli_io.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_io.c"/>
+            <file name="sl_cli_arguments.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_arguments.c"/>
+            <file name="sli_cli_io.h" uri="studio:/sdk/platform/service/cli/src/sli_cli_io.h"/>
+            <file name="sli_cli_input.h" uri="studio:/sdk/platform/service/cli/src/sli_cli_input.h"/>
+            <file name="sli_cli_arguments.h" uri="studio:/sdk/platform/service/cli/src/sli_cli_arguments.h"/>
+            <file name="sl_cli_delay.c" uri="studio:/sdk/platform/service/cli/src/sl_cli_delay.c"/>
+          </folder>
+        </folder>
         <folder name="device_init">
           <folder name="inc">
             <file name="sl_device_init_clocks.h" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_clocks.h"/>
@@ -140,6 +157,19 @@
             <file name="sl_system_process_action.h" uri="studio:/sdk/platform/service/system/inc/sl_system_process_action.h"/>
           </folder>
         </folder>
+        <folder name="sleeptimer">
+          <folder name="src">
+            <file name="sl_sleeptimer.c" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer.c"/>
+            <file name="sl_sleeptimer_hal_rtcc.c" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtcc.c"/>
+            <file name="sl_sleeptimer_hal_prortc.c" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_prortc.c"/>
+            <file name="sl_sleeptimer_hal_burtc.c" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c"/>
+            <file name="sli_sleeptimer_hal.h" uri="studio:/sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_sleeptimer.h" uri="studio:/sdk/platform/service/sleeptimer/inc/sl_sleeptimer.h"/>
+            <file name="sli_sleeptimer.h" uri="studio:/sdk/platform/service/sleeptimer/inc/sli_sleeptimer.h"/>
+          </folder>
+        </folder>
         <folder name="udelay">
           <folder name="src">
             <file name="sl_udelay.c" uri="studio:/sdk/platform/service/udelay/src/sl_udelay.c"/>
@@ -150,23 +180,48 @@
           </folder>
         </folder>
       </folder>
+      <folder name="CMSIS">
+        <folder name="Include">
+          <file name="arm_common_tables.h" uri="studio:/sdk/platform/CMSIS/Include/arm_common_tables.h"/>
+          <file name="arm_const_structs.h" uri="studio:/sdk/platform/CMSIS/Include/arm_const_structs.h"/>
+          <file name="arm_math.h" uri="studio:/sdk/platform/CMSIS/Include/arm_math.h"/>
+          <file name="cmsis_compiler.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_compiler.h"/>
+          <file name="cmsis_version.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_version.h"/>
+          <file name="cmsis_gcc.h" uri="studio:/sdk/platform/CMSIS/Include/cmsis_gcc.h"/>
+          <file name="core_cm33.h" uri="studio:/sdk/platform/CMSIS/Include/core_cm33.h"/>
+          <file name="mpu_armv8.h" uri="studio:/sdk/platform/CMSIS/Include/mpu_armv8.h"/>
+        </folder>
+      </folder>
       <folder name="emdrv">
         <folder name="common">
           <folder name="inc">
             <file name="ecode.h" uri="studio:/sdk/platform/emdrv/common/inc/ecode.h"/>
           </folder>
         </folder>
-        <folder name="ustimer">
+        <folder name="gpiointerrupt">
           <folder name="src">
-            <file name="ustimer.c" uri="studio:/sdk/platform/emdrv/ustimer/src/ustimer.c"/>
+            <file name="gpiointerrupt.c" uri="studio:/sdk/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c"/>
           </folder>
           <folder name="inc">
-            <file name="ustimer.h" uri="studio:/sdk/platform/emdrv/ustimer/inc/ustimer.h"/>
+            <file name="gpiointerrupt.h" uri="studio:/sdk/platform/emdrv/gpiointerrupt/inc/gpiointerrupt.h"/>
           </folder>
         </folder>
       </folder>
       <folder name="emlib">
+        <folder name="src">
+          <file name="em_burtc.c" uri="studio:/sdk/platform/emlib/src/em_burtc.c"/>
+          <file name="em_cmu.c" uri="studio:/sdk/platform/emlib/src/em_cmu.c"/>
+          <file name="em_assert.c" uri="studio:/sdk/platform/emlib/src/em_assert.c"/>
+          <file name="em_core.c" uri="studio:/sdk/platform/emlib/src/em_core.c"/>
+          <file name="em_emu.c" uri="studio:/sdk/platform/emlib/src/em_emu.c"/>
+          <file name="em_gpio.c" uri="studio:/sdk/platform/emlib/src/em_gpio.c"/>
+          <file name="em_iadc.c" uri="studio:/sdk/platform/emlib/src/em_iadc.c"/>
+          <file name="em_rtcc.c" uri="studio:/sdk/platform/emlib/src/em_rtcc.c"/>
+          <file name="em_system.c" uri="studio:/sdk/platform/emlib/src/em_system.c"/>
+          <file name="em_usart.c" uri="studio:/sdk/platform/emlib/src/em_usart.c"/>
+        </folder>
         <folder name="inc">
+          <file name="em_burtc.h" uri="studio:/sdk/platform/emlib/inc/em_burtc.h"/>
           <file name="em_chip.h" uri="studio:/sdk/platform/emlib/inc/em_chip.h"/>
           <file name="em_cmu.h" uri="studio:/sdk/platform/emlib/inc/em_cmu.h"/>
           <file name="em_cmu_compat.h" uri="studio:/sdk/platform/emlib/inc/em_cmu_compat.h"/>
@@ -178,33 +233,10 @@
           <file name="em_core.h" uri="studio:/sdk/platform/emlib/inc/em_core.h"/>
           <file name="em_emu.h" uri="studio:/sdk/platform/emlib/inc/em_emu.h"/>
           <file name="em_gpio.h" uri="studio:/sdk/platform/emlib/inc/em_gpio.h"/>
-          <file name="em_i2c.h" uri="studio:/sdk/platform/emlib/inc/em_i2c.h"/>
           <file name="em_iadc.h" uri="studio:/sdk/platform/emlib/inc/em_iadc.h"/>
+          <file name="em_rtcc.h" uri="studio:/sdk/platform/emlib/inc/em_rtcc.h"/>
           <file name="em_system.h" uri="studio:/sdk/platform/emlib/inc/em_system.h"/>
-          <file name="em_timer.h" uri="studio:/sdk/platform/emlib/inc/em_timer.h"/>
           <file name="em_usart.h" uri="studio:/sdk/platform/emlib/inc/em_usart.h"/>
-        </folder>
-        <folder name="src">
-          <file name="em_cmu.c" uri="studio:/sdk/platform/emlib/src/em_cmu.c"/>
-          <file name="em_assert.c" uri="studio:/sdk/platform/emlib/src/em_assert.c"/>
-          <file name="em_core.c" uri="studio:/sdk/platform/emlib/src/em_core.c"/>
-          <file name="em_emu.c" uri="studio:/sdk/platform/emlib/src/em_emu.c"/>
-          <file name="em_gpio.c" uri="studio:/sdk/platform/emlib/src/em_gpio.c"/>
-          <file name="em_i2c.c" uri="studio:/sdk/platform/emlib/src/em_i2c.c"/>
-          <file name="em_iadc.c" uri="studio:/sdk/platform/emlib/src/em_iadc.c"/>
-          <file name="em_system.c" uri="studio:/sdk/platform/emlib/src/em_system.c"/>
-          <file name="em_timer.c" uri="studio:/sdk/platform/emlib/src/em_timer.c"/>
-          <file name="em_usart.c" uri="studio:/sdk/platform/emlib/src/em_usart.c"/>
-        </folder>
-      </folder>
-      <folder name="driver">
-        <folder name="i2cspm">
-          <folder name="src">
-            <file name="sl_i2cspm.c" uri="studio:/sdk/platform/driver/i2cspm/src/sl_i2cspm.c"/>
-          </folder>
-          <folder name="inc">
-            <file name="sl_i2cspm.h" uri="studio:/sdk/platform/driver/i2cspm/inc/sl_i2cspm.h"/>
-          </folder>
         </folder>
       </folder>
     </folder>
@@ -240,17 +272,18 @@
   <includePath uri="studio:/sdk/app/common/util/app_log"/>
   <includePath uri="studio:/sdk/platform/common/inc"/>
   <includePath uri="studio:/sdk/hardware/board/inc"/>
+  <includePath uri="studio:/sdk/platform/service/cli/inc"/>
   <includePath uri="studio:/sdk/platform/CMSIS/Include"/>
   <includePath uri="studio:/sdk/platform/service/device_init/inc"/>
   <includePath uri="studio:/sdk/platform/emdrv/common/inc"/>
   <includePath uri="studio:/sdk/platform/emlib/inc"/>
   <includePath uri="studio:/sdk/platform/emlib/host/inc"/>
-  <includePath uri="studio:/sdk/platform/driver/i2cspm/inc"/>
+  <includePath uri="studio:/sdk/platform/emdrv/gpiointerrupt/inc"/>
   <includePath uri="studio:/sdk/platform/service/iostream/inc"/>
   <includePath uri="studio:/sdk/platform/common/toolchain/inc"/>
   <includePath uri="studio:/sdk/platform/service/system/inc"/>
+  <includePath uri="studio:/sdk/platform/service/sleeptimer/inc"/>
   <includePath uri="studio:/sdk/platform/service/udelay/inc"/>
-  <includePath uri="studio:/sdk/platform/emdrv/ustimer/inc"/>
   <macroDefinition name="DEBUG_EFM"/>
   <macroDefinition name="BGM220PC22HNA"/>
   <macroDefinition name="SL_BOARD_NAME" value="&quot;BRD4314A&quot;"/>
