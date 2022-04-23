@@ -6,10 +6,16 @@
 #include "ustimer.h"
 #include "em_gpio.h"
 
+struct OneWire
+{
+  uint8_t Temp;
+  uint8_t Humid;
+}DHT11;
+
 uint8_t DHT11_Start();
 
 uint8_t DHT11_Read();
 
-uint16_t DHT11_Read_Temp_Hum();
+struct OneWire DHT11_Read_Temp_Hum();
 
 #endif
