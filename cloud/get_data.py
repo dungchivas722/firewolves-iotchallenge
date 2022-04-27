@@ -65,10 +65,6 @@ def controlLamp(light, sw_light, sw_st_light, timeLightOn, timeLightOff, sw_st_t
 			return 1
 	return 0
 
-data_get = firebase.get('/',"data")
-vuon1 = Vuon(data_get[1])
-vuon2 = Vuon(data_get[2])
-print(vuon2.time_water)
 while(1):
 	data_get = firebase.get('/',"data") # Lấy dữ liệu cloud
 	vuon1 = Vuon(data_get[1])
