@@ -68,6 +68,7 @@ main.o: ../main.c \
  c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\iostream\inc\sl_iostream.h \
  E\:\LAB\Iot\ Challenge\IOT_Challenge\vuonthongminh-iotchallenge\offline\IOT_Challenge_Module_2\config/app_log_config.h \
  c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\system\inc\sl_system_init.h \
+ c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\system\inc\sl_system_process_action.h \
  ../app.h \
  c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\emlib\inc\em_i2c.h \
  c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\emlib\inc\em_gpio.h \
@@ -153,6 +154,7 @@ c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\device\siliconlabs\bgm2
 c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\iostream\inc\sl_iostream.h:
 E\:\LAB\Iot\ Challenge\IOT_Challenge\vuonthongminh-iotchallenge\offline\IOT_Challenge_Module_2\config/app_log_config.h:
 c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\system\inc\sl_system_init.h:
+c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\service\system\inc\sl_system_process_action.h:
 ../app.h:
 c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\emlib\inc\em_i2c.h:
 c\:\users\admin\simplicitystudio\sdks\gecko_sdk\platform\emlib\inc\em_gpio.h:
