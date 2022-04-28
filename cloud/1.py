@@ -85,6 +85,59 @@ def up_data(database, path, data):
     database.child(path)
     database.set(data)
 
+
+
+ser = serial.Serial ("/dev/ttyS0", 9600)    #ham mo cong port
+def loc(data):
+    if (data.isnumeric()==False): new = data.lstrip("+")
+    else: return data
+    return new
+
+while(1):
+    received_data = ser.read()              # lenh doc du
+    time.sleep(0.05)
+    data_left = ser.inWaiting()             #check for remaining byte
+    received_data += ser.read(data_left)
+    doc = received_data
+    #print (doc)                        #print received data 
+    docstring = doc.decode("utf-8")
+
+    data_get = database.child("/data").get().val() # Lấy dữ liệu cloud
+    vuon1 = Vuon(data_get[1])
+    # vuon2 = Vuon(data_get[2])
+
+    # Dữ liệu điều khiển
+    p1 = controlPump(vuon1.humidity_soil, vuon1.sw_pumb, vuon1.sw_st_threshold, vuon1.threshold, vuon1.threshold_max, vuon1.sw_st_water, vuon1.sw_st_water2, vuon1.timeWater, vuon1.timeWater2, vuon1.time_water)
+    l1 = controlLamp(vuon1.light, vuon1.sw_light, vuon1.sw_st_light, vuon1.timeLightOn, vuon1.timeLightOff, vuon1.sw_st_threshold_light, vuon1.threshold_light)
+    p2 = controlPump(vuon2.humidity_soil, vuon2.sw_pumb, vuon2.sw_st_threshold, vuon2.threshold, vuon2.threshold_max, vuon2.sw_st_water, vuon2.sw_st_water2, vuon2.timeWater, vuon2.timeWater2, vuon2.time_water)
+    l2 = controlLamp(vuon2.light, vuon2.sw_light, vuon2.sw_st_light, vuon2.timeLightOn, vuon2.timeLightOff, vuon2.sw_st_threshold_light, vuon2.threshold_light)
+    
+    humidity_soil1 = int(loc(docstring[28:32]))   # Cập nhập thông số đo được vào đây
+    tempareture1 = int(loc(docstring[16:20]))
+    light1 = int(loc(docstring[4:8]))
+    air1 = int(loc(docstring[10:14]))
+    # humidity_soil2 = 0
+    # tempareture2 = 0
+    # light2 = 0
+    # air2 = 0
+    
+    up_data(database, "data/1/air", air1)
+    up_data(database, "data/1/humidity_soil", humidity_soil1)
+    up_data(database, "data/1/light", light1)
+    up_data(database, "data/1/tempareture", tempareture1)
+    # up_data(database, "data/2/air", air2)
+    # up_data(database, "data/2/humidity_soil", humidity_soil2)
+    # up_data(database, "data/2/light", light2)
+    # up_data(database, "data/2/tempareture", tempareture2)
+
+
+
+
+
+
+
+
+
 # ser = serial.Serial ("/dev/ttyS0", 9600)    #ham mo cong port
 # def loc(data):
 #     if (data.isnumeric()==False): new = data.lstrip("+")
