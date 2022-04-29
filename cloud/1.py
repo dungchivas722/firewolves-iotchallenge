@@ -55,16 +55,16 @@ def controlPump(humidity_soil, sw_pumb, sw_st_threshold, threshold, threshold_ma
     time1 = int(timeWater["hour"])*60+int(timeWater["minute"])
     time2 = int(timeWater2["hour"])*60+int(timeWater2["minute"])
     if sw_pumb == 1:
-        return 1
+        return "t"
     if sw_st_threshold == 1:
         if humidity_soil >= int(threshold) and humidity_soil <= int(threshold_max):
-            return 1
+            return "t"
     if sw_st_water == 1:
         if time >= time1 and time <= time1 + int(time_water):
-            return 1
+            return "t"
         if time >= time2 and time <= time2 + int(time_water):
-            return 1
-    return 0
+            return "t"
+    return "f"
 
 def controlLamp(light, sw_light, sw_st_light, timeLightOn, timeLightOff, sw_st_threshold_light, threshold_light):
     now = datetime.now()
@@ -73,14 +73,14 @@ def controlLamp(light, sw_light, sw_st_light, timeLightOn, timeLightOff, sw_st_t
     timeOn = int(timeLightOn["hour"])*60+int(timeLightOn["minute"])
     timeOff = int(timeLightOff["hour"])*60+int(timeLightOff["minute"])
     if sw_light == 1:
-        return 1
+        return "c"
     if sw_st_light == 1:
         if time >= timeOn and time <= timeOff:
-            return 1
+            return "c"
     if sw_st_threshold_light == 1:
         if light < threshold_light:
-            return 1
-    return 0
+            return "c"
+    return "k"
 def up_data(database, path, data):
     database.child(path)
     database.set(data)
@@ -109,9 +109,11 @@ while(1):
     # Dữ liệu điều khiển
     p1 = controlPump(vuon1.humidity_soil, vuon1.sw_pumb, vuon1.sw_st_threshold, vuon1.threshold, vuon1.threshold_max, vuon1.sw_st_water, vuon1.sw_st_water2, vuon1.timeWater, vuon1.timeWater2, vuon1.time_water)
     l1 = controlLamp(vuon1.light, vuon1.sw_light, vuon1.sw_st_light, vuon1.timeLightOn, vuon1.timeLightOff, vuon1.sw_st_threshold_light, vuon1.threshold_light)
-    p2 = controlPump(vuon2.humidity_soil, vuon2.sw_pumb, vuon2.sw_st_threshold, vuon2.threshold, vuon2.threshold_max, vuon2.sw_st_water, vuon2.sw_st_water2, vuon2.timeWater, vuon2.timeWater2, vuon2.time_water)
-    l2 = controlLamp(vuon2.light, vuon2.sw_light, vuon2.sw_st_light, vuon2.timeLightOn, vuon2.timeLightOff, vuon2.sw_st_threshold_light, vuon2.threshold_light)
-    
+    # p2 = controlPump(vuon2.humidity_soil, vuon2.sw_pumb, vuon2.sw_st_threshold, vuon2.threshold, vuon2.threshold_max, vuon2.sw_st_water, vuon2.sw_st_water2, vuon2.timeWater, vuon2.timeWater2, vuon2.time_water)
+    # l2 = controlLamp(vuon2.light, vuon2.sw_light, vuon2.sw_st_light, vuon2.timeLightOn, vuon2.timeLightOff, vuon2.sw_st_threshold_light, vuon2.threshold_light)
+    viet = p1+l1
+    ser.write(viet.encode()) 
+
     humidity_soil1 = int(loc(docstring[28:32]))   # Cập nhập thông số đo được vào đây
     tempareture1 = int(loc(docstring[16:20]))
     light1 = int(loc(docstring[4:8]))
@@ -129,8 +131,6 @@ while(1):
     # up_data(database, "data/2/humidity_soil", humidity_soil2)
     # up_data(database, "data/2/light", light2)
     # up_data(database, "data/2/tempareture", tempareture2)
-
-
 
 
 
