@@ -137,14 +137,14 @@ public class tab1 extends Fragment {
                 TextView l2 = v.findViewById(R.id.light2);
                 TextView s2 = v.findViewById(R.id.hum_soil2);
 
-                s1.setText(parts1[2] + "%");
-                s2.setText(parts2[2] + "%");
+                s1.setText(parts1[2] + "");
+                s2.setText(parts2[2] + "");
                 t1.setText(parts1[3] + " C");
                 t2.setText(parts2[3] + " C");
-                a1.setText(parts1[4] + "%");
-                a2.setText(parts2[4] + "%");
-                l1.setText(parts1[5] + "%");
-                l2.setText(parts2[5] + "%");
+                a1.setText(parts1[4] + "");
+                a2.setText(parts2[4] + "");
+                l1.setText(parts1[5] + "");
+                l2.setText(parts2[5] + "");
 
 
                 if(parts1[0] == 1) pumb1.setChecked(true);
