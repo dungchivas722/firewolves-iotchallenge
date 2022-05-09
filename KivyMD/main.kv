@@ -1,0 +1,527 @@
+
+#: import md_icons kivymd.icon_definitions.md_icons
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        source: "log/uet.png"
+        theme_text_color: "Custoim"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "log/uet.png"
+
+    MDLabel:
+        text: "Nông Nghiệp Thông Minh"
+        font_style: "Button"
+        adaptive_height: True
+
+    MDLabel:
+        text: "Thành viên gồm"
+        font_style: "Caption"
+        adaptive_height: True
+    MDLabel:
+        text: "+Văn Quốc Dũng "
+        font_style: "Caption"
+        adaptive_height: True
+    MDLabel:
+        text: "+Phạm Đăng Du"
+        font_style: "Caption"
+        adaptive_height: True
+    MDLabel:
+        text: "+Nguyễn Kiên"
+        font_style: "Caption"
+        adaptive_height: True
+    MDLabel:
+        text: "+Mai Mạnh Huy"
+        font_style: "Caption"
+        adaptive_height: True
+    MDLabel:
+        text: "+Nghiêm Văn Quang"
+        font_style: "Caption"
+        adaptive_height: True
+    ScrollView:
+
+        MDList:
+
+            OneLineAvatarIconListItem:
+
+                text:"/dungchivas722"
+                IconLeftWidget:
+                    icon: "github"
+
+            OneLineAvatarIconListItem:
+                text:"dungchivas722"
+
+                IconLeftWidget:
+                    icon: "gmail"
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+MDScreen:
+    MDBoxLayout:
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:None
+            height:dp(80)
+            padding:dp(-5)
+            spacing:dp(50)
+            ScrollView:
+                bar_width:0
+                MDBoxLayout:
+                    adaptive_width:True
+                    spacing:dp(100)
+                    padding:dp(10)
+                    TabLabel
+                    TabLabel
+                    TabLabel
+                    TabLabel
+                        id:vuon1
+                        text:'Vườn 1: Đang mở'
+                        bg_color:(0,1,0,1)
+                    TabLabel
+                        id:vuon2
+                        text:'Vườn 2'
+                        bg_color:(0,0,0,0)
+
+                    TabLabel
+                        id:thoigianthuc
+                        text:'time_loading...'
+                        font_sze:30
+                        bg_color:(1,1,1,0)
+
+        MDSwiper:
+            size_hint_y: None
+            height: root.height*0.7225
+            on_swipe: self.get_current_item().ids.icon.shake()
+            on_swipe_left: app.change()
+            on_swipe_right: app.changetwo()
+            MySwiper:
+                image:'images/1.jpg'
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: app.theme_cls.primary_color
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:3
+                    rows:5
+                    Image:
+                        source:'images/1.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Nhiệt độ không khí : "
+                    Button:
+                        id:nhietdokhongkhi_vuon1
+                        text:"10"
+                    Image:
+                        source:'images/2.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Ánh sáng : "
+                    Button:
+                        id:anhsang_vuon1
+                        text:"20"
+                    Image:
+                        source:'images/3.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Độ ẩm không khí : "
+                    Button:
+                        id:doamkhongkhi_vuon1
+                        text:"30"
+                    Image:
+                        source:'images/4.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Độ ẩm đất : "
+                    Button:
+                        id:doamdat_vuon1
+                        text:"40"
+                    ToggleButton:
+                        orientation: 'vertical'
+                        id:den_vuon1
+                        text:"Đèn:OFF "
+                        halign: "center"
+                        on_press: app.on_toggle_den1()
+                    MDLabel:
+                        text:" và "
+                        size_hint:0.2,0.2
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 1, 1
+                    ToggleButton:
+                        orientation: 'vertical'
+                        id:bom_vuon1
+                        text:" Bơm:OFF"
+                        halign: "center"
+                        on_press: app.on_toggle_bom1()
+
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: 0,1,1,1
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:1
+                    rows:6
+                    MDLabel:
+                        text:"Hẹn giờ tưới cây"
+                        halign: "center"
+                    MDLabel:
+                        text:"Thời gian tưới"
+                        halign: "center"
+                    MDLabel:
+                        text:"Hẹn giờ bật đèn"
+                        halign: "center"
+                    MDLabel:
+                        text:"Hẹn giờ tắt đèn"
+                        halign: "center"
+                    MDLabel:
+                        text:"Ngưỡng tưới"
+                        halign: "center"
+                    MDLabel:
+                        text:"Ngưỡng bật đèn"
+                        halign: "center"
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: 0,1,1,1
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:1
+                    rows:6
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiotuoicay_vuon1
+                            text:"00:00:00"
+                            size_hint: None,None
+                            size: 220,160
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiotuoicay_vuon1()
+                        MDLabel:
+                            text:' tưới cây'
+                    Spinner:
+                        id:spinner_thoigiantuoi1
+                        pos_hint:.2,5
+                        size_hint: None, None
+                        size: 120, 60
+                        pos_hint: {'center': (.5, .5)}
+                        text: '0'
+                        values:["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","50","51","52","53","54","55","56","57","58","59","60","61","62"]
+                        on_text:app.spinner_thoigiantuoi1(spinner_thoigiantuoi1.text)
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiobatden_vuon1
+                            text:"00:00:00"
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiobatden_vuon1()
+                        MDLabel:
+                            text:' bật đèn'
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiotatden_vuon1
+                            text:"00:00:00"
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiotatden_vuon1()
+                        MDLabel:
+                            text:' tắt đèn'
+                    MDBoxLayout
+                        FloatLayout:
+                            Spinner:
+                                id:spinner_nguongtuoiduoi1
+                                pos_hint:.2,5
+                                size_hint: None, None
+                                size: 70, 70
+                                pos_hint: {'center': (.5, .5)}
+                                text: '0'
+                                values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                                on_text: app.spinner_nguongtuoiduoi1(spinner_nguongtuoiduoi1.text)
+
+                        MDLabel:
+                            text:"đến"
+                            halign: "center"
+                            size_hint:0.4,1
+                        FloatLayout:
+                            Spinner:
+                                id:spinner_nguongtuoitren1
+                                pos_hint:.2,5
+                                size_hint: None, None
+                                size: 70, 70
+                                pos_hint: {'center': (.5, .5)}
+                                text: '0'
+                                values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                                on_text: app.spinner_nguongtuoitren1(spinner_nguongtuoitren1.text)
+
+                    FloatLayout:
+                        Spinner:
+                            id:spinner_nguongbatden1
+                            pos_hint:.2,5
+                            size_hint: None, None
+                            size: 150  , 60
+                            pos_hint: {'center': (.5, .5)}
+                            text: '0'
+                            values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                            on_text: app.spinner_nguongbatden1(spinner_nguongbatden1.text)
+
+            MySwiper:
+                image:'images/2.jpeg'
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: app.theme_cls.primary_color
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:3
+                    rows:5
+                    Image:
+                        source:'images/1.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Nhiệt độ không khí : "
+                    Button:
+                        id:nhietdokhongkhi_vuon2
+                        text:"10"
+                    Image:
+                        source:'images/2.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Ánh sáng : "
+                    Button:
+                        id:anhsang_vuon2
+                        text:"20"
+                    Image:
+                        source:'images/3.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Độ ẩm không khí : "
+                    Button:
+                        id:doamkhongkhi_vuon2
+                        text:"30"
+                    Image:
+                        source:'images/4.png'
+                        size: self.texture_size
+                    MDLabel:
+                        text:"Độ ẩm đất : "
+                    Button:
+                        id:doamdat_vuon2
+                        text:"40"
+                    ToggleButton:
+                        orientation: 'vertical'
+                        id:den_vuon2
+                        text:"Đèn:OFF "
+                        halign: "center"
+                        on_press: app.on_toggle_den2()
+                    MDLabel:
+                        text:" và "
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 1, 1
+                    ToggleButton:
+                        orientation: 'vertical'
+                        id:bom_vuon2
+                        text:" Bơm:OFF"
+                        halign: "center"
+                        on_press: app.on_toggle_bom2()
+
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: 0,1,1,1
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:1
+                    rows:6
+                    MDLabel:
+                        text:"Hẹn giờ tưới cây"
+                        halign: "center"
+                    MDLabel:
+                        text:"Thời gian tưới"
+                        halign: "center"
+                    MDLabel:
+                        text:"Hẹn giờ bật đèn"
+                        halign: "center"
+                    MDLabel:
+                        text:"Hẹn giờ tắt đèn"
+                        halign: "center"
+                    MDLabel:
+                        text:"Ngưỡng tưới"
+                        halign: "center"
+                    MDLabel:
+                        text:"Ngưỡng bật đèn"
+                        halign: "center"
+                MDGridLayout:
+                    adaptive_height: True
+                    md_bg_color: 0,1,1,1
+                    size_hint_y: 1
+                    radius: [20,]
+                    cols:1
+                    rows:6
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiotuoicay_vuon2
+                            text:"00:00:00"
+                            size_hint: None,None
+                            size: 220,160
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiotuoicay_vuon2()
+                        MDLabel:
+                            text:' tưới cây'
+                    Spinner:
+                        id:spinner_thoigiantuoi2
+                        pos_hint:.2,5
+                        size_hint: None, None
+                        size: 120, 60
+                        pos_hint: {'center': (.5, .5)}
+                        text: '0'
+                        values:["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","50","51","52","53","54","55","56","57","58","59","60","61","62"]
+                        on_text:app.spinner_thoigiantuoi2(spinner_thoigiantuoi2.text)
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiobatden_vuon2
+                            text:"00:00:00"
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiobatden_vuon2()
+                        MDLabel:
+                            text:' bật đèn'
+                    MDBoxLayout:
+                        MDRaisedButton:
+                            id: hengiotatden_vuon2
+                            text:"00:00:00"
+                            pos_hint :{'center_x': .5,'center_y': .5}
+                            on_release : app.show_time_picker_hengiotatden_vuon2()
+                        MDLabel:
+                            text:' tắt đèn'
+                    MDBoxLayout
+                        FloatLayout:
+                            Spinner:
+                                id:spinner_nguongtuoiduoi2
+                                pos_hint:.2,5
+                                size_hint: None, None
+                                size: 70, 70
+                                pos_hint: {'center': (.5, .5)}
+                                text: '0'
+                                values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                                on_text: app.spinner_nguongtuoiduoi2(spinner_nguongtuoiduoi2.text)
+                        MDLabel:
+                            text:"đến"
+                            halign: "center"
+                            size_hint:0.4,1
+                        FloatLayout:
+                            Spinner:
+                                id:spinner_nguongtuoitren2
+                                pos_hint:.2,5
+                                size_hint: None, None
+                                size: 70, 70
+                                pos_hint: {'center': (.5, .5)}
+                                text: '0'
+                                values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                                on_text: app.spinner_nguongtuoitren2(spinner_nguongtuoitren2.text)
+                    FloatLayout:
+                        Spinner:
+                            id:spinner_nguongbatden2
+                            pos_hint:.2,5
+                            size_hint: None, None
+                            size: 150, 70
+                            pos_hint: {'center': (.5, .5)}
+                            text: '0'
+                            values: ["0", "5", "10", "15", "20","25","30","35","40","45","50","55","60","65","70","75","80"]
+                            on_text: app.spinner_nguongbatden2(spinner_nguongbatden2.text)
+        MDBoxLayout:
+            padding:dp(5)
+            size_hint_y:(None)
+            height:dp(75)
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            MDScreen:
+
+                MDToolbar:
+                    title: "Five Wolves"
+                    specific_text_color: app.theme_cls.accent_color
+                    type: 'bottom'
+                    elevation: 1
+                    pos_hint: {"top": 0.96}
+                    left_action_items:
+                        [[ 'menu', lambda x:  nav_drawer.set_state("open")  if nav_drawer.state == "close" else    nav_drawer.set_state("close")  ]  ]
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+            ContentNavigationDrawer:
+                id: content_drawer
+<BottomCard@MDCard>:
+    radius:[25]
+    image:""
+    size_hint_x:None
+    spacing:dp(10)
+    padding:dp(10)
+    elevation:15
+    FitImage:
+        source: root.image
+        radius: [20,]
+<TabLabel@Label>:
+    color:0,0,0,0
+    bg_color:0,0,0,0
+    canvas.before:
+        Color:
+            rgba:self.bg_color
+        RoundedRectangle:
+            radius:[25]
+            size:self.size[0]+10,self.size[1]
+            pos:self.pos[0]-5,self.pos[1]
+
+    size_hint_y:None
+    size_hint_x:None
+    width:self.texture_size[0]
+    height:dp(50)
+    color:0,0,0,1
+
+<MagicButton@MagicBehavior+MDIconButton>
+
+
+<MySwiper@MDSwiperItem>
+    image:''
+    RelativeLayout:
+        FitImage:
+            source: root.image
+            radius: [20,]
+        MDBoxLayout:
+            orientation:'vertical'
+            pos_hint:{'x':(root.width-self.width-dp(140))/root.width,"y":.8}
+            adaptive_size:True
+            padding:4
+            MagicButton:
+                id: icon
+                icon: "camera-wireless"
+                opacity: 0
+                user_font_size: "50sp"
+                theme_text_color:'Custom'
+                text_color:0,1,0,1
+                adaptive_height:True
+
+
+        MDCard:
+            size_hint_y:None
+            size_hint_x:None
+            width:root.width-dp(700)
+            height:dp(65)
+            pos_hint:{'center_x':.5,"y":.05}
+            spacing: "12dp"
+            md_bg_color:.9,.9,.9,.2
+            orientation:"vertical"
+            padding:dp(10)
+            radius:[20]

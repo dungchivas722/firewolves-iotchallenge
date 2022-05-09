@@ -1,0 +1,3 @@
+cài kivy
+cài kivymd
+chạy source kivy -> chạy file
