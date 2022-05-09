@@ -1,10 +1,14 @@
-# firewolves-iotchallenge-uet - Hệ thống vườn thông minh
-- Thông tin
+# firewolves-iotchallenge-uet - Hệ thống vườn thông minh #
+## #Thông tin ##
 + Thành viên : Văn Quốc Dũng + Nguyễn Kiên + Nguyễn Đăng Du + Nghiêm Văn Quang + Mai Mạnh Huy
-- Cảm biến sử dụng
+## Cảm biến sử dụng ##
 + Dht11 - độ ẩm + nhiệt độ không khí
 + Bh1750 - cảm biến ánh sáng
 + rk520-01 độ ẩm + nhiệt độ đất
-- Tổng quan hình ảnh cuộc thi và giải thưởng
-![](anh/giaithuong.jpg)
+## Tổng quan hình ảnh cuộc thi và giải thưởng ##
+![](anh/giaithuong.JPG)
+## Hình ảnh về sản phẩm ##
 
+![](anh/1.JPG)
+![](anh/2.JPG)
+![](anh/3.JPG)
