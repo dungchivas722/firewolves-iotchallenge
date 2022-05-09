@@ -6,5 +6,5 @@
 + Bh1750 - cảm biến ánh sáng
 + rk520-01 độ ẩm + nhiệt độ đất
 - Tổng quan hình ảnh cuộc thi và giải thưởng
-![](image/giaithuong.jpg)
+![](anh/giaithuong.jpg)
 
